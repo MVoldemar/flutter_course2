@@ -228,12 +228,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   bool selected() {
-    return ((attackingBodyPart == BodyPart.head) ||
-            (attackingBodyPart == BodyPart.torso) ||
-            (attackingBodyPart == BodyPart.legs)) &&
-        ((defendingBodyPart == BodyPart.head) ||
-            (defendingBodyPart == BodyPart.torso) ||
-            (defendingBodyPart == BodyPart.legs));
+    return (attackingBodyPart != null) &&
+        (defendingBodyPart != null);
   }
 }
 
