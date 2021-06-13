@@ -148,7 +148,7 @@ class GoButton extends StatelessWidget {
   final String text;
  final VoidCallback onTap;
  final Color color;
-  const GoButton({Key? key, required this.onTap, required this.color, this.text = "GO",}) : super(key: key);
+  const GoButton({Key? key, required this.onTap, required this.color, required this.text,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
