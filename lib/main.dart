@@ -43,7 +43,7 @@ class MyHomePageState extends State<MyHomePage> {
   static const maxLives = 5;
 
   int yourLives = maxLives;
-  int enemyLives = maxLives;
+  int enemysLives = maxLives;
 
 
   @override
@@ -55,33 +55,33 @@ class MyHomePageState extends State<MyHomePage> {
             children: [
               FightersInfo(maxLivesCount: maxLives,
                   yourLivesCount: yourLives,
-                  enemyLivesCount: enemyLives,
+                  enemyLivesCount: enemysLives,
                 ),
-              Expanded(child: SizedBox()),
+              SizedBox(height: 30,),
+              Expanded(child: Padding(padding: EdgeInsets.only(left: 16, right: 16),
+                child: SizedBox(height: double.infinity, width: double.infinity,
+                child: ColoredBox(color: Color(0xFFC5D1EA)),),)),
 
-              Padding(padding: EdgeInsets.only(left: 16, right: 16, top:30, bottom: 30 ),
-              child: Expanded(child: SizedBox(height: 146, width: double.infinity,
-                child: ColoredBox(color: FightClubColors.darkPurpleBackground,),)), ),
-              Expanded(child: SizedBox()),
+              SizedBox(height: 30,),
               ControlsWidget(
                   defendingBodyPart: defendingBodyPart,
                   selectDefendingBodyPart: _selectDefendingBodyPart,
                   attackingBodyPart: attackingBodyPart,
                   selectAttackingBodyPart: _selectAttackingBodyPart),
               SizedBox(height: 14,),
-              GoButton(text: yourLives == 0 || enemyLives == 0 ? "Start new game": "Go ",
+              GoButton(text: yourLives == 0 || enemysLives == 0 ? "Start new game": "Go",
                 onTap: _onGoButtonClicked,
                 color: getGoButtonColor(),
                  ),
 
-              SizedBox(height: 5,),
+              SizedBox(height: 16 ,),
             ],
           ),
         ));
   }
 
   Color getGoButtonColor() {
-    if (yourLives == 0 || enemyLives == 0) {
+    if (yourLives == 0 || enemysLives == 0) {
       return FightClubColors.blackButton;
     }
     else if (attackingBodyPart == null || defendingBodyPart == null) {
@@ -94,17 +94,17 @@ class MyHomePageState extends State<MyHomePage> {
 
   void _onGoButtonClicked()
   {
-    if(enemyLives == 0 || yourLives == 0){
+    if(enemysLives == 0 || yourLives == 0){
       setState((){
         yourLives = maxLives;
-        enemyLives = maxLives;
+        enemysLives = maxLives;
       });
     } else if(attackingBodyPart != null && defendingBodyPart != null) {
       setState(() {
         final bool enemyLoseLife = (attackingBodyPart != whatEnemyDefends);
         final bool youLoseLife = (defendingBodyPart != whatEnemyAttacks);
         if(enemyLoseLife) {
-          enemyLives = enemyLives - 1;
+          enemysLives = enemysLives - 1;
         }
         if(youLoseLife){
           yourLives = yourLives - 1;
@@ -122,7 +122,7 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
   void _selectDefendingBodyPart(final BodyPart value) {
-    if(yourLives == 0 || enemyLives == 0  ){
+    if(yourLives == 0 || enemysLives == 0  ){
       return;
     }
     setState(() {
@@ -133,7 +133,7 @@ class MyHomePageState extends State<MyHomePage> {
 
 
   void _selectAttackingBodyPart(final BodyPart value) {
-    if(yourLives == 0 || enemyLives == 0){
+    if(yourLives == 0 || enemysLives == 0){
       return;
     }
     setState(() {
