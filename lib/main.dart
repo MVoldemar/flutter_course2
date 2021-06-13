@@ -44,7 +44,7 @@ class MyHomePageState extends State<MyHomePage> {
 
   int yourLives = maxLives;
   int enemysLives = maxLives;
-
+  String textMoveResult = "";
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,11 @@ class MyHomePageState extends State<MyHomePage> {
               //SizedBox(height: 30,),
               Expanded(child: Padding(padding: EdgeInsets.only(left: 16, right: 16, bottom: 30, top: 30),
                 child: SizedBox(height: double.infinity, width: double.infinity,
-                child: ColoredBox(color: Color(0xFFC5D1EA)),),)),
+                child: ColoredBox(color: Color(0xFFC5D1EA,
+                ),child: Center(child: Text(textMoveResult, textAlign: TextAlign.center,),),),
+                ),
+              )
+              ),
 
               //SizedBox(height: 30,),
               ControlsWidget(
@@ -94,8 +98,10 @@ class MyHomePageState extends State<MyHomePage> {
 
   void _onGoButtonClicked()
   {
+
     if(enemysLives == 0 || yourLives == 0){
       setState((){
+        textMoveResult = "";
         yourLives = maxLives;
         enemysLives = maxLives;
       });
@@ -109,7 +115,7 @@ class MyHomePageState extends State<MyHomePage> {
         if(youLoseLife){
           yourLives = yourLives - 1;
         }
-
+        textMoveResult = moveResultText();
 
         whatEnemyDefends = BodyPart.random();
         whatEnemyAttacks = BodyPart.random();
@@ -139,6 +145,32 @@ class MyHomePageState extends State<MyHomePage> {
     setState(() {
       attackingBodyPart = value;
     });
+  }
+
+  String moveResultText() {
+    if(enemysLives == 0 && yourLives == 0){
+      return "Draw";
+    }
+    else if (enemysLives == 0 && yourLives !=0)
+      return "You won";
+    else if (yourLives == 0 && enemysLives != 0)
+      return "You lost";
+    else if(yourLives > 0 || enemysLives > 0){
+      if(attackingBodyPart != whatEnemyDefends && defendingBodyPart != whatEnemyAttacks)
+      return "You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}"
+          "\nEnemy hit your ${whatEnemyAttacks.name.toLowerCase()}";
+      else if(attackingBodyPart == whatEnemyDefends && defendingBodyPart == whatEnemyAttacks)
+        return "Your attack was blocked."
+            "\nEnemy’s attack was blocked.";
+      else if(attackingBodyPart != whatEnemyDefends && defendingBodyPart == whatEnemyAttacks)
+        return "You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}."
+            "\nEnemy’s attack was blocked.";
+      else if(attackingBodyPart == whatEnemyDefends && defendingBodyPart != whatEnemyAttacks)
+        return "Your attack was blocked."
+            "\nEnemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
+      else return "";
+    }
+    else return "";
   }
 
 }
