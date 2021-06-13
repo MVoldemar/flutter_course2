@@ -57,12 +57,12 @@ class MyHomePageState extends State<MyHomePage> {
                   yourLivesCount: yourLives,
                   enemyLivesCount: enemysLives,
                 ),
-              SizedBox(height: 30,),
-              Expanded(child: Padding(padding: EdgeInsets.only(left: 16, right: 16),
+              //SizedBox(height: 30,),
+              Expanded(child: Padding(padding: EdgeInsets.only(left: 16, right: 16, bottom: 30, top: 30),
                 child: SizedBox(height: double.infinity, width: double.infinity,
                 child: ColoredBox(color: Color(0xFFC5D1EA)),),)),
 
-              SizedBox(height: 30,),
+              //SizedBox(height: 30,),
               ControlsWidget(
                   defendingBodyPart: defendingBodyPart,
                   selectDefendingBodyPart: _selectDefendingBodyPart,
@@ -341,10 +341,29 @@ class LivesWidget extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: List.generate(overallLivesCount, (index) {
-        if(index<currentLivesCount)
+        if(index<currentLivesCount && index < overallLivesCount-1)
+          {
+          return Column(
+            children: [
+              Image.asset(FightClubIcons.heartFull, width: 18, height: 18,),
+              SizedBox(height: 4, width: 4,)
+            ],);
+           // else  if(index == (overallLivesCount-1)) return Image.asset(FightClubIcons.heartFull, width: 18, height: 18,);
+          }
+        else if(index<currentLivesCount && index == overallLivesCount-1)
+        {
           return Image.asset(FightClubIcons.heartFull, width: 18, height: 18,);
+          // else  if(index == (overallLivesCount-1)) return Image.asset(FightClubIcons.heartFull, width: 18, height: 18,);
+        }
       else {
-          return Image.asset(FightClubIcons.heartEmpty, width: 18, height: 18,);
+        if(index < overallLivesCount-1){
+          return Column(
+            children: [
+              Image.asset(FightClubIcons.heartEmpty, width: 18, height: 18,),
+              SizedBox(height: 4, width: 4,)
+            ],);
+        }
+         else return Image.asset(FightClubIcons.heartEmpty, width: 18, height: 18,);
         }
         }),
     );
