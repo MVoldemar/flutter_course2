@@ -157,11 +157,11 @@ class MyHomePageState extends State<MyHomePage> {
       return "You lost";
     else if(yourLives > 0 || enemysLives > 0){
       if(attackingBodyPart != whatEnemyDefends && defendingBodyPart != whatEnemyAttacks)
-      return "You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}.\nEnemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
+      return "You hit enemy's ${attackingBodyPart!.name.toLowerCase()}.\nEnemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
       else if(attackingBodyPart == whatEnemyDefends && defendingBodyPart == whatEnemyAttacks)
-        return "Your attack was blocked.\nEnemy’s attack was blocked.";
+        return "Your attack was blocked.\nEnemy's attack was blocked.";
       else if(attackingBodyPart != whatEnemyDefends && defendingBodyPart == whatEnemyAttacks)
-        return "You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}.\nEnemy’s attack was blocked.";
+        return "You hit enemy's ${attackingBodyPart!.name.toLowerCase()}.\nEnemy's attack was blocked.";
       else if(attackingBodyPart == whatEnemyDefends && defendingBodyPart != whatEnemyAttacks)
         return "Your attack was blocked.\nEnemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
       else return "";
