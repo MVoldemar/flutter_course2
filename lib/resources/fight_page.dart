@@ -143,24 +143,8 @@ class FightPageState extends State<FightPage> {
     ? "You hit enemy's ${attackingBodyPart!.name.toLowerCase()}."
         : "Enemy's attack was blocked.";
     return "$first\n$second";
-
-    // else if(yourLives > 0 || enemysLives > 0){
-    //   if(attackingBodyPart != whatEnemyDefends && defendingBodyPart != whatEnemyAttacks)
-    //     return "You hit enemy's ${attackingBodyPart!.name.toLowerCase()}.\nEnemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
-    //   else if(attackingBodyPart == whatEnemyDefends && defendingBodyPart == whatEnemyAttacks)
-    //     return "Your attack was blocked.\nEnemy's attack was blocked.";
-    //   else if(attackingBodyPart != whatEnemyDefends && defendingBodyPart == whatEnemyAttacks)
-    //     return "You hit enemy's ${attackingBodyPart!.name.toLowerCase()}.\nEnemy's attack was blocked.";
-    //   else if(attackingBodyPart == whatEnemyDefends && defendingBodyPart != whatEnemyAttacks)
-    //     return "Your attack was blocked.\nEnemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
-    //   else return "";
-    // }
-    // else return "";
   }
-
 }
-
-
 
 class FightersInfo extends StatelessWidget {
   final int maxLivesCount;
