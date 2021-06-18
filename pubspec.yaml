@@ -18,10 +18,12 @@ dependencies:
   cupertino_icons: ^1.0.3
   google_fonts: ^2.1.0
   crypto: ^3.0.1
+  shared_preferences: ^2.0.6
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
 
 
 flutter:
