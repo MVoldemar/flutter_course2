@@ -46,7 +46,7 @@ class  FightResultWidget extends StatelessWidget {
                     shape: BoxShape.rectangle,
                     borderRadius: BorderRadius.circular(22),
                   ),
-                  child: Text(fightResult.result,
+                  child: Text(fightResult.result.toLowerCase(),
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white, fontSize: 16 ),
                   ),
