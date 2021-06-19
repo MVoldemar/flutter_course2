@@ -36,7 +36,7 @@ class  FightResultWidget extends StatelessWidget {
                     SizedBox(child: Image.asset(FightClubImages.youAvatar), height: 92, width: 92,),
                   ],
                 ),
-                Center(child: Container(
+                Container(
                   margin: EdgeInsets.only(bottom: 43, top: 53),
                   alignment: Alignment.center,
                   height: 44,
@@ -50,7 +50,6 @@ class  FightResultWidget extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.white, fontSize: 16 ),
                   ),
-                ),
                 ),
                 Column(
                   children: [
