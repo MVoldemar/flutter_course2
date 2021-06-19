@@ -33,7 +33,7 @@ class  FightResultWidget extends StatelessWidget {
                     SizedBox(height: 12,),
                     Text("You", style: TextStyle(color: FightClubColors.darkGreyText),),
                     SizedBox(height: 10,),
-                    SizedBox(child: Image.asset(FightClubImages.youAvatar), height: 92, width: 92,),
+                    Image.asset(FightClubImages.youAvatar, height: 92, width: 92,),
                   ],
                 ),
                 Container(
@@ -56,7 +56,7 @@ class  FightResultWidget extends StatelessWidget {
                     SizedBox(height: 12,),
                     Text("Enemy", style: TextStyle(color: FightClubColors.darkGreyText),),
                     SizedBox(height: 10,),
-                    SizedBox(child: Image.asset(FightClubImages.enemyAvatar), height: 92, width: 92,),
+                    Image.asset(FightClubImages.enemyAvatar, height: 92, width: 92,),
                   ],
                 ),
                               ],
