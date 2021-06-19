@@ -69,15 +69,15 @@ class  FightResultWidget extends StatelessWidget {
     switch(fightResult) {
       case FightResult.won:
         {
-            return Colors.green;
+            return FightClubColors.greenResult;
         }
       case FightResult.lost:
         {
-            return Colors.red;
+            return FightClubColors.redResult;
         }
       case FightResult.draw:
         {
-            return Colors.blue;
+            return FightClubColors.blueResult;
         }
       default:
         return Colors.transparent;
