@@ -56,6 +56,7 @@ class StatisticsPage extends StatelessWidget {
                       SizedBox(
                         height: 6,
                       ),
+
                       SizedBox(
                         height: 40,
                         child: Text(
