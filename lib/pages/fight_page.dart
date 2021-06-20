@@ -91,28 +91,8 @@ class FightPageState extends State<FightPage> {
     });
 
     if(enemysLives == 0 || yourLives == 0) {
-      SharedPreferences.getInstance().then((value) {
-        if(enemysLives == 0 && yourLives != 0){
-          _calculateResult(_wonCount!, value, "stats_won");
-         print("won");
-         // Navigator.of(context).pop();
-        }
-        else if(yourLives == 0 && enemysLives != 0 ){
-          _calculateResult(_lostCount!, value, "stats_lost");
-         print("lost");
-          //Navigator.of(context).pop();
-        }
-        else {
-          _calculateResult(_drawCount!, value, "stats_draw");
-          print("draw");
-                  }
-        print("won: $_wonCount lost: $_lostCount draw: $_drawCount");
-        Navigator.of(context).pop();
-      }
 
-      );
-
-
+      Navigator.of(context).pop();
     }
 
     else if(attackingBodyPart != null && defendingBodyPart != null) {
@@ -128,8 +108,23 @@ class FightPageState extends State<FightPage> {
         final FightResult? fightResult = FightResult.calculateResult(yourLives, enemysLives);
         if(fightResult != null){
           SharedPreferences.getInstance().then((sharedPreferences) {
-              sharedPreferences.setString("last_fight_result", fightResult.result);
-          });
+            sharedPreferences.setString(
+                "last_fight_result", fightResult.result);
+            if (enemysLives == 0 && yourLives != 0) {
+              _calculateResult(_wonCount!, sharedPreferences, "stats_won");
+              //print("won");
+            }
+            else if (yourLives == 0 && enemysLives != 0) {
+              _calculateResult(_lostCount!, sharedPreferences, "stats_lost");
+              //print("lost");
+            }
+            else {
+              _calculateResult(_drawCount!, sharedPreferences, "stats_draw");
+              //print("draw");
+            }
+            print("won: $_wonCount lost: $_lostCount draw: $_drawCount");
+          }
+          );
           }
         textMoveResult = _calculateCenterText(youLoseLife, enemyLoseLife);
         whatEnemyDefends = BodyPart.random();
