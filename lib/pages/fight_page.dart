@@ -80,9 +80,41 @@ class FightPageState extends State<FightPage> {
 
   void _onGoButtonClicked()
   {
+    int? _wonCount;
+    int? _lostCount;
+    int? _drawCount;
+    SharedPreferences.getInstance().then((value) {
+      _wonCount = value.getInt("stats_won") != null ? value.getInt("stats_won") : 0;
+      _lostCount = value.getInt("stats_lost") != null ? value.getInt("stats_lost") : 0 ;
+      _drawCount = value.getInt("stats_draw") != null ? value.getInt("stats_draw") : 0 ;
+
+    });
+
     if(enemysLives == 0 || yourLives == 0) {
+      SharedPreferences.getInstance().then((value) {
+        if(enemysLives == 0 && yourLives != 0){
+          _calculateResult(_wonCount!, value, "stats_won");
+         print("won");
+         // Navigator.of(context).pop();
+        }
+        else if(yourLives == 0 && enemysLives != 0 ){
+          _calculateResult(_lostCount!, value, "stats_lost");
+         print("lost");
+          //Navigator.of(context).pop();
+        }
+        else {
+          _calculateResult(_drawCount!, value, "stats_draw");
+          print("draw");
+                  }
+        print("won: $_wonCount lost: $_lostCount draw: $_drawCount");
         Navigator.of(context).pop();
+      }
+
+      );
+
+
     }
+
     else if(attackingBodyPart != null && defendingBodyPart != null) {
       setState(() {
         final bool enemyLoseLife = attackingBodyPart != whatEnemyDefends;
@@ -108,6 +140,14 @@ class FightPageState extends State<FightPage> {
     }
   }
 
+  int _calculateResult(int count, SharedPreferences value, String key) {
+     count = (count + 1);
+    value.setInt(key, count);
+    return count;
+             //
+
+  }
+
   void _selectDefendingBodyPart(final BodyPart value) {
     if(yourLives == 0 || enemysLives == 0  ){
       return;
@@ -116,8 +156,6 @@ class FightPageState extends State<FightPage> {
       defendingBodyPart = value;
     });
   }
-
-
 
   void _selectAttackingBodyPart(final BodyPart value) {
     if(yourLives == 0 || enemysLives == 0){
