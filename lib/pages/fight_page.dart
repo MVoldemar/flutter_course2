@@ -110,11 +110,11 @@ class FightPageState extends State<FightPage> {
           SharedPreferences.getInstance().then((sharedPreferences) {
             sharedPreferences.setString(
                 "last_fight_result", fightResult.result);
-            if (enemysLives == 0 && yourLives != 0) {
+            if (fightResult.result == "Won") {
               _calculateResult(_wonCount!, sharedPreferences, "stats_won");
               //print("won");
             }
-            else if (yourLives == 0 && enemysLives != 0) {
+            else if (fightResult.result == "Lost") {
               _calculateResult(_lostCount!, sharedPreferences, "stats_lost");
               //print("lost");
             }
